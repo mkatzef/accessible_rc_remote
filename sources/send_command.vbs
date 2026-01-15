@@ -1,0 +1,1 @@
+WScript.CreateObject("WScript.Shell").Run "curl http://localhost:8080/" & Wscript.Arguments(0), 0, False
