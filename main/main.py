@@ -65,15 +65,20 @@ class MyHTTPServer(HTTPServer):
 
 def run_control_server(port):
     global SER
-    print('opening')
     s = serial.Serial(port.device, baudrate=115200, timeout=1)
     time.sleep(2)
+    print('Connected!')
 
     SER = s
     host_name = "127.0.0.1"
     server_port = 8080
     web_server = MyHTTPServer((host_name, server_port), MyHandler)
+    
     print(f"Server started http://{host_name}:{server_port}")
+    print()
+    print("=" * 80)
+    print("Ready for RC commands!")
+    print("=" * 80)
 
     try:
         web_server.serve_forever()
@@ -106,7 +111,7 @@ def main():
     runner_ups = []
     for candidate in candidates:
         if candidate.vid in [0x1A86, 0x2E8A] and candidate.pid in [0x7523, 0x000A]:
-            print('Exacteroonie')
+            print('Found a supported device!')
             best_candidates.append(candidate)
         elif candidate.description.startswith('USB-SERIAL CH340') or candidate.description.startswith('USB Serial Device'):
             runner_ups.append(candidate)

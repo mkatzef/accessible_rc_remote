@@ -1,0 +1,6 @@
+installer/build/*
+installer/dist/*
+main/build/*
+main/dist/*
+*.spec
+output/*
